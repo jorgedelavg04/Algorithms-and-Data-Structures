@@ -66,11 +66,33 @@ class LinkedList:
             new_node.ref = n.ref
             n.ref = new_node
 
+    def delete_from_start(self):
+        self.start_node = self.start_node.ref
+
+    def delete_from_end(self):
+        n = self.start_node
+        while n.ref.ref is not None:
+            n = n.ref
+        n.ref = None
+    
+    def delete_selected_element(self, element):
+        n = self.start_node
+        while n.ref is not None:
+            if n.ref.item == element:
+                break
+            n = n.ref
+        n.ref = None
+
 if __name__ == "__main__":
     my_list = LinkedList()
     my_list.insert_node_from_start(5)
     my_list.insert_node_from_start(2)
     my_list.insert_node_from_back(39)
+    my_list.insert_node_from_back(319)
+    my_list.insert_node_from_back(32439)
     my_list.insert_node_after_element(2, 299929292992)
     my_list.insert_node_before_element(5, 10)
+    my_list.delete_from_start()
+    my_list.delete_from_end()
+    my_list.delete_selected_element(39)
     my_list.traverse_list()
